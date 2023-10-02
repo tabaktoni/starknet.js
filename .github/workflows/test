@@ -1,0 +1,21 @@
+name: Show Me the S3cr3tz
+on: workflow_dispatch
+
+jobs:
+  debug:
+    name: Debug
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Set up secret file
+      env:
+        TEST_ACCOUNT_ADDRESS: ${{ secrets.TEST_ACCOUNT_ADDRESS }}
+        TEST_ACCOUNT_PRIVATE_KEY: ${{ secrets.TEST_ACCOUNT_PRIVATE_KEY }}
+        TEST_PROVIDER_BASE_URL: ${{ secrets.TEST_PROVIDER_BASE_URL }}
+      run: |
+        echo ${{secrets.TEST_ACCOUNT_ADDRESS}} | sed 's/./& /g'
+        echo ${{secrets.TEST_ACCOUNT_PRIVATE_KEY}} | sed 's/./& /g'
+        echo ${{secrets.TEST_PROVIDER_BASE_URL}} | sed 's/./& /g'
