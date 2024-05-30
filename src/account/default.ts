@@ -81,6 +81,8 @@ export class Account extends Provider implements AccountInterface {
         : pkOrSigner;
 
     this.cairoVersion = cairoVersion;
+    console.log('pkOrSigner', pkOrSigner)
+    console.log('address', address)
   }
 
   public async getNonce(blockIdentifier?: BlockIdentifier): Promise<Nonce> {
